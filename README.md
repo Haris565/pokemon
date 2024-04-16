@@ -1,3 +1,11 @@
+Hi
+
+A small note from my end the "https://pokeapi.co/api/v2" doesn't have the logic to send the search params or any other logic to perform the search on the API side so I have to load all the data on the frontend side to perform the task.
+
+Also please don't hesitate to reach out if you need further clarification or assistance during the review process. I'm happy to provide any additional information or make revisions as necessary.
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
