@@ -1,15 +1,15 @@
 "use client";
 import CategoryCard from "@/componets/elements/CategoryCard";
+import SearchBar from "@/componets/elements/Search";
+import Spinner from "@/componets/elements/Spinner";
 import {
   useGetCategories,
   useGetCategoryDetails,
   useGetPokemonsForEachCategory,
 } from "@/data/categories.data";
+import { useMemo } from "react";
 import styled from "styled-components";
 import { colors } from "../../constants";
-import { useGetAllPokemons } from "@/data/pokemons.data";
-import { useMemo } from "react";
-import SearchBar from "@/componets/elements/Search";
 
 export default () => {
   const { data, isLoading, isError } = useGetCategories();
@@ -36,7 +36,7 @@ export default () => {
 
   const showLoader = isLoading || query?.pending || pending;
 
-  if (showLoader) return <h1>Loading...</h1>;
+  if (showLoader) return <Spinner size="40px" />;
 
   if (isError || query?.error) return <h1>Something went wrong</h1>;
 
@@ -55,6 +55,7 @@ export default () => {
             bg={colors[Math.floor(Math.random() * colors.length)]}
             key={category.name}
             title={category.name}
+            totalPokemons={category.pokemon.length}
           />
         ))}
       </GridContainer>

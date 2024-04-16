@@ -1,6 +1,7 @@
 "use client";
 import { useMemo } from "react";
 import Chart from "react-apexcharts";
+import styled from "styled-components";
 
 type BarChartProps = {
   stats: {
@@ -38,8 +39,14 @@ export default function BarChart({ stats }: BarChartProps) {
   }, [stats]);
 
   return (
-    <div className="mixed-chart">
-      <Chart options={options} series={series} type="bar" width="500" />
-    </div>
+    <Container>
+      <Chart options={options} series={series} type="bar" width="600" />
+    </Container>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

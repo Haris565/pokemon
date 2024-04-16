@@ -7,12 +7,14 @@ type CategoryCardProps = {
   title: string;
   bg: string;
   id: string;
+  totalPokemons?: number;
 };
 
-const CategoryCard = ({ title, bg, id }: CategoryCardProps) => {
+const CategoryCard = ({ title, bg, id, totalPokemons }: CategoryCardProps) => {
   return (
     <CardContainer href={`category/${id}`} bg={bg}>
       <Title>{title}</Title>
+      <SubHeading>{totalPokemons} Pokemons</SubHeading>
     </CardContainer>
   );
 };
@@ -46,4 +48,9 @@ const CardContainer = styled(Link)<{ bg?: string }>`
 const Title = styled.h2`
   font-size: 18px;
   margin-bottom: 8px;
+`;
+
+const SubHeading = styled.p`
+  font-size: 14px;
+  font-weight: 500;
 `;

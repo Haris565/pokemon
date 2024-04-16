@@ -1,6 +1,7 @@
 "use client";
 
 import { PokemonCard } from "@/componets/elements/PokemonCard";
+import Spinner from "@/componets/elements/Spinner";
 import {
   useGetPokemonsForEachCategory,
   useGetSingleCategory,
@@ -13,36 +14,6 @@ export default function Page() {
   const params = useParams();
   const id = params.cid as string;
 
-  // const qc = useQueryClient();
-
-  // console.log(qc.getQueryData([QUERY_KEY.ALL_CATEGORIES]));
-
-  // console.log(
-  //   qc.getQueryData([
-  //     "category",
-  //     `${process?.env?.NEXT_PUBLIC_CATEGORY_URL}/${id}/`,
-  //   ])
-  // );
-
-  // const newDate = qc
-  //   .getQueriesData({
-  //     queryKey: ["category", `${process?.env?.NEXT_PUBLIC_CATEGORY_URL}/${id}`],
-  //     exact: false,
-  //   })
-  //   .forEach(([, queryData]) => {
-  //     console.log(queryData);
-  //     if (queryData) console.log(queryData);
-  //   });
-
-  // const queryCaches = qc
-  //   .getQueriesData({
-  //     queryKey: ["category", `${process?.env?.NEXT_PUBLIC_CATEGORY_URL}/${id}`],
-  //     exact: false,
-  //   })
-  //   .map(([key]) => console.log(key));
-
-  // console.log(queryCaches);
-
   const { data, error, isLoading } = useGetSingleCategory(id);
 
   const normalizeData = useMemo(() => {
@@ -52,13 +23,13 @@ export default function Page() {
 
   const query = useGetPokemonsForEachCategory(normalizeData);
 
-  if (isLoading || query?.pending) return <div>Loading...</div>;
+  if (isLoading || query?.pending) return <Spinner size="40px" />;
 
   if (error || query?.error) return <div>Error...</div>;
 
   return (
     <Container>
-      <Heading> {query?.data?.length} Found</Heading>
+      <Heading> {query?.data?.length} Pokemon's Found</Heading>
       <GridContainer>
         {query.data.map((pokemon, idx) => (
           <PokemonCard

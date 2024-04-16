@@ -1,6 +1,7 @@
 "use client";
 
 import BarChart from "@/componets/elements/BarChart";
+import Spinner from "@/componets/elements/Spinner";
 import { useGetSinglePokemon } from "@/data/pokemons.data";
 import { useParams } from "next/navigation";
 import styled from "styled-components";
@@ -12,7 +13,7 @@ export default function Page() {
 
   const { data: pokemon, error, isLoading } = useGetSinglePokemon(id);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Spinner size="40px" />;
 
   if (error) return <div>Error: {error.message}</div>;
 
@@ -81,8 +82,7 @@ const Container = styled.div`
 const Image = styled.img`
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
+  object-fit: contain;
   margin-bottom: 2rem;
 `;
 

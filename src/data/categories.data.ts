@@ -1,5 +1,5 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../../constants";
+import { useQueries, useQuery } from "@tanstack/react-query";
 
 type data = {
   name: string;
